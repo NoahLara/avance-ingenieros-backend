@@ -1,0 +1,26 @@
+# Ignorar directorio node_modules generado por npm/yarn
+/node_modules/
+
+# Ignorar archivos de compilación de TypeScript
+/dist/
+
+# Ignorar archivos de configuración local
+.env
+
+# Ignorar archivos de registro generados por la ejecución del programa
+logs/
+*.log
+
+# Ignorar archivos de caché y de respaldo
+.cache/
+.backup/
+
+# Ignorar archivos de configuración específicos de IDE o editor de texto
+.vscode/
+.idea/
+
+# Ignorar archivos de respaldo de TypeScript
+*.tsbuildinfo
+
+# Ignorar archivos de migraciones generados por TypeORM
+/src/migration/*.ts
