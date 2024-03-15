@@ -1,14 +1,26 @@
-import { Entity, BaseEntity, ManyToOne, PrimaryColumn } from "typeorm";
+import {
+  Entity,
+  BaseEntity,
+  PrimaryColumn,
+  JoinColumn,
+  ManyToOne,
+} from "typeorm";
 import { USERS } from "./USERS";
 import { ROLES } from "./ROLES";
 
 @Entity()
 export class USERS_ROLES extends BaseEntity {
   @PrimaryColumn()
-  @ManyToOne(() => USERS, (user) => user.roles)
-  role_id: string;
+  user_id: string;
 
   @PrimaryColumn()
+  role_id: string;
+
+  @JoinColumn({ name: "user_id" })
+  @ManyToOne(() => USERS, (user) => user.roles)
+  user: USERS;
+
+  @JoinColumn({ name: "role_id" })
   @ManyToOne(() => ROLES, (role) => role.users)
-  user_id: string;
+  role: ROLES;
 }
