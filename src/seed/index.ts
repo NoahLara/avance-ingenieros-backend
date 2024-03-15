@@ -1,5 +1,6 @@
 import AppDataSource from "../db";
 import { RolesSeed } from "./RolesSeed";
+import { UserRolesSeed } from "./UserRolesSeed";
 import { UsersSeed } from "./UsersSeed";
 
 async function runSeeds() {
@@ -16,6 +17,10 @@ async function runSeeds() {
     // Ejecutar los seeds de roles
     const rolesSeed = new RolesSeed();
     await rolesSeed.run();
+
+    // Ejecutar los seeds para asignacion de roles a usuarios
+    const userRolesSeed = new UserRolesSeed();
+    await userRolesSeed.run();
 
     console.log("Seed Execution Completed Successfully");
   } catch (error) {
