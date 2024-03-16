@@ -14,6 +14,11 @@ export class UserRolesSeed {
           where: { name: "Administrador" },
         });
 
+        // Obtener el rol de empleado
+        const employeeRole = await ROLES.findOne({
+          where: { name: "Empleado" },
+        });
+
         // Si no se encuentra el rol de administrador, mostrar un error y rechazar la promesa
         if (!adminRole) {
           console.error(
@@ -33,6 +38,11 @@ export class UserRolesSeed {
             const userRole = new USERS_ROLES();
             userRole.user_id = user.id;
             userRole.role_id = adminRole.id;
+            await userRole.save();
+
+            const roleUser = new USERS_ROLES();
+            userRole.user_id = user.id;
+            userRole.role_id = employeeRole?.id || "empl2024";
             await userRole.save();
           } else {
             // Si no es "RAFAL COLATO", asignar un rol aleatorio
