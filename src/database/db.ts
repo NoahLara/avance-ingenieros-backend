@@ -1,15 +1,16 @@
 import { DataSource } from "typeorm";
+import config from "../config/config";
 import { AUTH_TOKENS, ROLES, USERS, USERS_ROLES } from "./entities";
 
 const AppDataSource = new DataSource({
-  type: "postgres",
-  host: "localhost",
-  username: "nlara99",
-  password: "Myhero07",
-  port: 5432,
-  database: "avance-ingenieros",
-  entities: [USERS, ROLES, AUTH_TOKENS, USERS_ROLES],
-  synchronize: true,
+  type:         config.database.type as "postgres",
+  host:         config.database.host,
+  username:     config.database.username,
+  password:     config.database.password,
+  port:         config.database.port,
+  database:     config.database.database,
+  synchronize:  config.database.synchronize,
+  entities:     [USERS, ROLES, AUTH_TOKENS, USERS_ROLES],
 });
 
 export default AppDataSource;
