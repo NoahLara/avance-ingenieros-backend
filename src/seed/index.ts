@@ -1,4 +1,4 @@
-import AppDataSource from "../db";
+import AppDataSource from "../database/db";
 import { RolesSeed } from "./RolesSeed";
 import { UserRolesSeed } from "./UserRolesSeed";
 import { UsersSeed } from "./UsersSeed";

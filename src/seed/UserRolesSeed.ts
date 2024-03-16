@@ -1,5 +1,5 @@
-import AppDataSource from "../db";
-import { USERS_ROLES, USERS, ROLES } from "../entities";
+import AppDataSource from "../database/db";
+import { USERS_ROLES, USERS, ROLES } from "../database/entities";
 import { user_data } from "./data";
 
 export class UserRolesSeed {
