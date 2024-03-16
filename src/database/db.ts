@@ -10,6 +10,7 @@ const AppDataSource = new DataSource({
   port:         config.database.port,
   database:     config.database.database,
   synchronize:  config.database.synchronize,
+  migrations:   [__dirname + '/migrations/*.ts'],
   entities:     [USERS, ROLES, AUTH_TOKENS, USERS_ROLES],
 });
 
