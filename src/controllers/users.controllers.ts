@@ -17,15 +17,27 @@ export const getUsers = async (req: Request, res: Response) => {
       .leftJoinAndSelect("users_roles.role", "roles")
       .getMany();
 
-    // Mapear la información para devolverla en el formato deseado
-    const usersData = usersWithRoles.map((userRole) => ({
-      id: userRole.user.id,
-      username: userRole.user.username,
-      email: userRole.user.email,
-      roles: usersWithRoles
-        .filter((u) => u.user.id === userRole.user.id)
-        .map((u) => u.role.name), // Obtener los nombres de los roles para este usuario
-    }));
+    // Crear un mapa para almacenar los usuarios únicos con sus roles
+    const usersMap = new Map<string, any>(); // Utilizamos un Map para almacenar usuarios únicos por su ID
+
+    // Iterar sobre los resultados de la consulta y agregar los roles a cada usuario en el mapa
+    usersWithRoles.forEach((userRole) => {
+      const userId = userRole.user.id;
+      if (!usersMap.has(userId)) {
+        // Si el usuario no está en el mapa, lo agregamos con sus roles
+        usersMap.set(userId, {
+          id: userRole.user.id,
+          username: userRole.user.username,
+          email: userRole.user.email,
+          roles: [], // Inicializamos un array para almacenar los roles del usuario
+        });
+      }
+      // Agregamos el rol al usuario en el mapa
+      usersMap.get(userId).roles.push(userRole.role.name);
+    });
+
+    // Convertir el mapa a un array de usuarios
+    const usersData = Array.from(usersMap.values());
 
     // Preparar la respuesta
     const defaultResponse: DefaultResponse<any> = {
