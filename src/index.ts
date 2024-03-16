@@ -1,6 +1,6 @@
 import "reflect-metadata"; 
 import app from "./app";
-import config from "../src/config/config";
+import config from "./config/config";
 import AppDataSource from "./database/db";
 
 async function starApp() {
