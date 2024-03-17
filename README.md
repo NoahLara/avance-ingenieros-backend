@@ -30,7 +30,7 @@ Para setear los valores para la conexion a la base de datos se tiene que ser en 
 Para iniciar el servidor, ejecuta el siguiente comando:
 
 ```
-npm run start
+npm run dev
 ```
 
 Este comando ejecutará el servidor Node.js y lo hará accesible en http://localhost:3000/.
